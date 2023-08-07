@@ -46,6 +46,13 @@ module.exports = {
       ${''/* stabilizers */}
       (pad "" np_thru_hole circle (at 5.5 0) (size 1.7018 1.7018) (drill 1.7018) (layers *.Cu *.Mask))
       (pad "" np_thru_hole circle (at -5.5 0) (size 1.7018 1.7018) (drill 1.7018) (layers *.Cu *.Mask))
+
+      ${''/* 3d TODO: cleanup and take model as arg */}
+      (model "\${KIPRJMOD}/3d/Kailh_LP_Choc_Burnt_Orange.IGS"
+        (offset (xyz 0 0 2.5))
+        (scale (xyz 1 1 1))
+        (rotate (xyz -90 0 -90))
+      )
       `
     const keycap = `
       ${'' /* keycap marks */}
@@ -55,7 +62,7 @@ module.exports = {
       (fp_line (start -9 8.5) (end -9 -8.5) (layer Dwgs.User) (width 0.15))
       `
     function pins(def_neg, def_pos, def_side) {
-      if(p.hotswap) {
+      if (p.hotswap) {
         return `
           ${'' /* holes */}
           (pad "" np_thru_hole circle (at ${def_pos}5 -3.75) (size 3 3) (drill 3) (layers *.Cu *.Mask))
@@ -66,14 +73,14 @@ module.exports = {
           (pad 2 smd rect (at ${def_pos}8.275 -3.75 ${p.rot}) (size 2.6 2.6) (layers ${def_side}.Cu ${def_side}.Paste ${def_side}.Mask)  ${p.to.str})
         `
       } else {
-          return `
+        return `
             ${''/* pins */}
             (pad 1 thru_hole circle (at ${def_pos}5 -3.8) (size 2.032 2.032) (drill 1.27) (layers *.Cu *.Mask) ${p.from.str})
             (pad 2 thru_hole circle (at ${def_pos}0 -5.9) (size 2.032 2.032) (drill 1.27) (layers *.Cu *.Mask) ${p.to.str})
           `
       }
     }
-    if(p.reverse) {
+    if (p.reverse) {
       return `
         ${standard}
         ${p.keycaps ? keycap : ''}

@@ -8,28 +8,28 @@ module.exports = {
   params: {
     designator: 'MCU',
     orientation: 'down',
-    RAW: {type: 'net', value: 'RAW'},
-    GND: {type: 'net', value: 'GND'},
-    RST: {type: 'net', value: 'RST'},
-    VCC: {type: 'net', value: 'VCC'},
-    P21: {type: 'net', value: 'P21'},
-    P20: {type: 'net', value: 'P20'},
-    P19: {type: 'net', value: 'P19'},
-    P18: {type: 'net', value: 'P18'},
-    P15: {type: 'net', value: 'P15'},
-    P14: {type: 'net', value: 'P14'},
-    P16: {type: 'net', value: 'P16'},
-    P10: {type: 'net', value: 'P10'},
-    P1: {type: 'net', value: 'P1'},
-    P0: {type: 'net', value: 'P0'},
-    P2: {type: 'net', value: 'P2'},
-    P3: {type: 'net', value: 'P3'},
-    P4: {type: 'net', value: 'P4'},
-    P5: {type: 'net', value: 'P5'},
-    P6: {type: 'net', value: 'P6'},
-    P7: {type: 'net', value: 'P7'},
-    P8: {type: 'net', value: 'P8'},
-    P9: {type: 'net', value: 'P9'}
+    RAW: { type: 'net', value: 'RAW' },
+    GND: { type: 'net', value: 'GND' },
+    RST: { type: 'net', value: 'RST' },
+    VCC: { type: 'net', value: 'VCC' },
+    P21: { type: 'net', value: 'P21' },
+    P20: { type: 'net', value: 'P20' },
+    P19: { type: 'net', value: 'P19' },
+    P18: { type: 'net', value: 'P18' },
+    P15: { type: 'net', value: 'P15' },
+    P14: { type: 'net', value: 'P14' },
+    P16: { type: 'net', value: 'P16' },
+    P10: { type: 'net', value: 'P10' },
+    P1: { type: 'net', value: 'P1' },
+    P0: { type: 'net', value: 'P0' },
+    P2: { type: 'net', value: 'P2' },
+    P3: { type: 'net', value: 'P3' },
+    P4: { type: 'net', value: 'P4' },
+    P5: { type: 'net', value: 'P5' },
+    P6: { type: 'net', value: 'P6' },
+    P7: { type: 'net', value: 'P7' },
+    P8: { type: 'net', value: 'P8' },
+    P9: { type: 'net', value: 'P9' }
   },
   body: p => {
     const standard = `
@@ -112,9 +112,15 @@ module.exports = {
         (pad 22 thru_hole circle (at 8.89 ${def_neg}7.62 0) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.P7.str})
         (pad 23 thru_hole circle (at 11.43 ${def_neg}7.62 0) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.P8.str})
         (pad 24 thru_hole circle (at 13.97 ${def_neg}7.62 0) (size 1.7526 1.7526) (drill 1.0922) (layers *.Cu *.SilkS *.Mask) ${p.P9.str})
+        ${'' /* TODO: cleanup model and take param */}
+        (model "\${KIPRJMOD}/3d/Arduino Pro Micro USB Type C.step"
+          (offset (xyz -14 8.9 1.64))
+          (scale (xyz 1 1 1))
+          (rotate (xyz 0 0 0))
+        )
       `
     }
-    if(p.orientation == 'down') {
+    if (p.orientation == 'down') {
       return `
         ${standard}
         ${pins('-', '')})

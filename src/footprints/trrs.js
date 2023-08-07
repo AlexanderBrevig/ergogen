@@ -62,6 +62,12 @@ module.exports = {
       (fp_line (start 0.75 12.1) (end -5.35 12.1) (layer Dwgs.User) (width 0.15))
       (fp_line (start 0.75 0) (end -5.35 0) (layer Dwgs.User) (width 0.15))
 
+      ${''/* TODO: clean up model and take arg */}
+      (model "\${KIPRJMOD}/3d/PJ320A.STEP"
+        (offset (xyz 5 2.5 -13.7))
+        (scale (xyz 1 1 1))
+        (rotate (xyz -90 0 90))
+      )
       `
     function stabilizers(def_pos) {
       return `
@@ -77,15 +83,15 @@ module.exports = {
         (pad 4 thru_hole oval (at ${def_pos} 3.2 ${p.rot}) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) ${p.D.str})
       `
     }
-    if(p.reverse & p.symmetric) {
+    if (p.reverse & p.symmetric) {
       return `
         ${standard}
         ${stabilizers('-2.3')}
         ${pins('0', '-4.6')}
         ${pins('-4.6', '0')})
       `
-    } else if(p.reverse) {
-        return `
+    } else if (p.reverse) {
+      return `
           ${standard}
           ${stabilizers('-2.3')}
           ${stabilizers('0')}
